@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0908">
+<meta name="description" content="Saturday 24 October, 9 pm. Cocktails, DJ, food. Nobody leaves before 2 am.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ishan / 33">
+<meta property="og:description" content="Saturday 24 October, 9 pm. Cocktails, DJ, food. Nobody leaves before 2 am.">
+<meta property="og:url" content="https://exploring-to-see.github.io/ishan33/">
+<meta property="og:image" content="https://exploring-to-see.github.io/ishan33/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0908'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-weight='700' text-anchor='middle' fill='%23e8b54a'%3E33%3C/text%3E%3C/svg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Ishan / 33</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..800;1,6..96,500..800&family=VT323&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: classy black-and-gold party (was Y2K maximalist; kept its collage motion). One tap on the card goes straight to the invite. Step one: a holographic greeting card; tapping it swings the cover open (and starts the music). Step two: one screen, no scroll; every piece drops in from above and lands like a slapped-on sticker. Chrome bubble type, translucent pager countdown, caution-tape house rule, taped map, gel button, sparkles, stage lights on the beat. */
+:root{
+  color-scheme: dark;
+  --night:#0b0908;
+  --night-2:#2a1a0c;
+  --cream:#f7ecd8;
+  --dim:#bfae93;
+  --hot:#d7262e;
+  --hot-deep:#6e0d11;
+  --cyan:#ff7a1a;
+  --lime:#e8b54a;
+  --sun:#f2c766;
+  --lilac:#b8862f;
+  --ink:#120d08;
+  --ink-soft:#6b5a45;
+  --lcd:#1c0f08;
+  --lcd-lo:#0d0604;
+  --lcd-ink:#ff8a2a;
+  --paper:#f7ecd8;
+  --stamp:#c4161c;
+  --line:rgba(232,181,74,.28);
+  --chrome:linear-gradient(180deg,#fff4cf 0%,#f3d27a 30%,#c8962f 48%,#7a5214 54%,#dcae52 68%,#fff0c2 88%,#b48a3c 100%);
+  --holo:linear-gradient(115deg,#7a5418 0%,#e9c46a 22%,#fff1c4 40%,#c8962f 58%,#f3d27a 76%,#7a5418 100%);
+  --bubble:"Bodoni Moda","Didot","Bodoni 72","Times New Roman",serif;
+  --pixel:"VT323","Courier New",monospace;
+  --ui:"Instrument Sans","Helvetica Neue",Arial,system-ui,sans-serif;
+  --pulse:0;
+  --gap:clamp(7px,1.5vh,16px);
+}
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+html{height:100%;-webkit-text-size-adjust:100%;overflow-x:hidden;overflow-x:clip}
+body{
+  margin:0;height:100%;
+  background:var(--night);
+  background-image:
+    radial-gradient(90% 50% at 50% 0%, var(--night-2) 0%, rgba(42,26,12,0) 70%),
+    radial-gradient(60% 40% at 100% 100%, rgba(215,38,46,.2), rgba(215,38,46,0) 70%),
+    radial-gradient(60% 40% at 0% 80%, rgba(255,122,26,.12), rgba(255,122,26,0) 70%);
+  color:var(--cream);font-family:var(--ui);font-size:16px;line-height:1.4;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:0;
+  overflow-x:hidden;overflow-x:clip;
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+button{font:inherit}
+#lights{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.85}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:20}
+.grain{position:fixed;inset:-50%;z-index:30;pointer-events:none;opacity:.08;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation:grain .9s steps(6) infinite}
+.dots{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.22;
+  background:radial-gradient(circle, rgba(232,181,74,.45) 1px, transparent 1.6px) 0 0/14px 14px;
+  -webkit-mask:linear-gradient(160deg,#000 0%,transparent 45%);mask:linear-gradient(160deg,#000 0%,transparent 45%)}
+
+.chrome{
+  background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 3px 0 #2a1806) drop-shadow(0 0 calc(var(--pulse) * 18px) rgba(255,170,60,.7));
+}
+.spark{position:absolute;width:22px;height:22px;fill:var(--sun);pointer-events:none;animation:twinkle 2.4s ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(255,214,140,.8))}
+
+/* ---------- Step one: holographic card ---------- */
+.cover{
+  position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(16px,3.4vh,30px);
+  padding:env(safe-area-inset-top,0px) max(16px, env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(16px, env(safe-area-inset-left,0px));
+  text-align:center;transition:opacity .6s ease, transform .8s cubic-bezier(.5,0,.2,1);
+}
+.cover.gone{opacity:0;transform:scale(1.3);pointer-events:none}
+.card{
+  appearance:none;border:0;padding:0;background:none;cursor:pointer;color:inherit;
+  position:relative;width:min(76vw,310px,48vh);aspect-ratio:3/4;perspective:1300px;
+  animation:float 3.4s ease-in-out infinite;
+}
+.opening .card{animation:none}
+.card-inside{
+  position:absolute;inset:0;border-radius:18px;border:4px solid #fff;overflow:hidden;
+  background:radial-gradient(circle at 50% 45%, #fff 0%, var(--sun) 18%, var(--hot) 45%, #5a1aa8 75%, var(--night) 100%);
+  display:grid;place-items:center;
+}
+.card-inside b{font-family:var(--bubble);font-weight:400;font-size:clamp(1.6rem,8vw,2.4rem);line-height:1;color:#fff;text-shadow:0 3px 0 var(--hot-deep)}
+.card-front{position:absolute;inset:0;transform-origin:0 50%;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.6,0,.2,1)}
+.opening .card-front{transform:rotateY(-165deg)}
+.face{position:absolute;inset:0;border-radius:16px;border:2px solid var(--lime);-webkit-backface-visibility:hidden;backface-visibility:hidden;overflow:hidden}
+.face-front{
+  background:radial-gradient(circle at 50% 38%, #2e1d0d 0%, #0b0908 72%);
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.9), 0 0 0 6px rgba(232,181,74,.12), 0 0 40px rgba(255,140,40,.18);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--cream);
+}
+.face-front::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(255,226,160,.22) 45%,transparent 60%);background-size:250% 100%;animation:shine 3.2s ease-in-out infinite}
+.face-back{transform:rotateY(180deg);background:var(--holo);background-size:300% 300%;filter:saturate(.7) brightness(.9)}
+.cf-top{position:relative;font-weight:600;font-size:.875rem;letter-spacing:.06em;color:var(--dim)}
+.cf-33{position:relative;font-family:var(--bubble);font-weight:700;font-variation-settings:"opsz" 96;font-size:clamp(6.5rem,32vw,9.5rem);line-height:.85;letter-spacing:-.04em;
+  background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 4px 0 #2a1806)}
+.cf-name{position:relative;font-family:var(--bubble);font-style:italic;font-weight:600;font-size:clamp(1.4rem,6.4vw,1.9rem);line-height:1.05;color:var(--cream)}
+.card:active .face-front{filter:brightness(1.2)}
+.tapnote{margin:0;display:grid;gap:6px;justify-items:center}
+.tapnote strong{font-family:var(--bubble);font-style:italic;font-weight:600;font-size:1.25rem;color:var(--sun)}
+.tapnote span{display:inline-flex;align-items:center;gap:6px;font-size:.8125rem;color:var(--dim)}
+.tapnote svg{width:14px;height:14px;fill:currentColor}
+
+/* ---------- Step two: invite ---------- */
+.screen{
+  position:relative;z-index:1;
+  width:100%;max-width:440px;margin:0 auto;min-height:100%;
+  display:flex;flex-direction:column;justify-content:space-between;gap:var(--gap);
+  padding-block:clamp(12px,2.4vh,26px) clamp(10px,2vh,22px);
+  text-align:center;
+}
+/* Everything drops in and lands like a sticker */
+.drop .fall{animation:fall .85s cubic-bezier(.3,1.2,.5,1) backwards;animation-delay:calc(.1s + var(--d,0) * .09s)}
+@keyframes fall{
+  0%{transform:translateY(-115vh) rotate(var(--r,-10deg))}
+  58%{transform:translateY(0) rotate(0)}
+  70%{transform:translateY(0) scale(1.06,.9)}
+  84%{transform:translateY(-7px) scale(.98,1.03)}
+  100%{transform:none}
+}
+
+.hero{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:clamp(12px,3.6vw,22px);text-align:left}
+.deck{
+  position:relative;width:clamp(104px,min(36vw,20vh),168px);aspect-ratio:1;max-width:100%;touch-action:none;
+  appearance:none;border:0;padding:0;margin:0;background:none;border-radius:50%;cursor:pointer;color:inherit;
+}
+.glow{
+  position:absolute;inset:-30%;border-radius:50%;pointer-events:none;
+  background:
+    radial-gradient(closest-side at 30% 35%, rgba(215,38,46,.6), rgba(215,38,46,0)),
+    radial-gradient(closest-side at 72% 68%, rgba(255,140,40,.55), rgba(255,140,40,0));
+  filter:blur(16px);opacity:calc(.45 + var(--pulse) * .55);transform:scale(calc(1 + var(--pulse) * .1));
+}
+.spinner{position:absolute;inset:0;border-radius:50%;will-change:transform}
+.record{
+  position:absolute;inset:0;border-radius:50%;
+  background:repeating-radial-gradient(circle at 50% 50%, #17121c 0 1px, #0a080d 1px 2.3px);
+  box-shadow:0 0 0 2px #b8862f, 0 18px 36px -14px rgba(0,0,0,.9);
+}
+.label{position:absolute;inset:30%;border-radius:50%;background:var(--holo);background-size:200% 200%;color:var(--ink);display:grid;place-content:center}
+.label::after{content:"";position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:var(--night)}
+.l-name{font-family:var(--bubble);font-style:italic;font-weight:700;font-size:clamp(.75rem,3vw,1rem);line-height:1;transform:translateY(-8px)}
+.l-side{font-size:.5rem;font-weight:700;letter-spacing:.08em;transform:translateY(7px)}
+.sheen{
+  position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:conic-gradient(from 210deg, rgba(255,255,255,0) 0deg, rgba(255,255,255,.12) 22deg, rgba(255,255,255,0) 48deg, rgba(255,255,255,0) 180deg, rgba(255,255,255,.1) 205deg, rgba(255,255,255,0) 232deg);
+  -webkit-mask:radial-gradient(circle, transparent 0 30%, #000 30.5%);mask:radial-gradient(circle, transparent 0 30%, #000 30.5%);
+}
+.arm{
+  position:absolute;right:-14%;top:-9%;width:34%;height:76%;overflow:visible;pointer-events:none;
+  transform-origin:72% 9%;transform:rotate(-24deg);transition:transform 1.1s cubic-bezier(.5,0,.2,1);
+  filter:drop-shadow(0 5px 5px rgba(0,0,0,.55));
+}
+.on .arm{transform:rotate(6deg)}
+
+.who{display:grid;gap:6px;min-width:0}
+h1{margin:0;font-family:var(--bubble);font-style:italic;font-weight:700;font-variation-settings:"opsz" 96;line-height:.92;display:grid}
+h1 .n1{font-size:clamp(2.6rem,min(14vw,8.2vh),4.4rem)}
+h1 .n2{font-size:clamp(1.6rem,min(8.6vw,5vh),2.6rem);font-weight:600;color:var(--cream);white-space:nowrap}
+.stickers{display:flex;flex-wrap:wrap;gap:6px}
+.stk{
+  display:inline-block;padding:3px 10px;border-radius:999px;border:1px solid rgba(242,199,102,.65);
+  font-weight:600;font-size:.75rem;color:var(--sun);background:rgba(11,9,8,.5);box-shadow:0 4px 8px -4px rgba(0,0,0,.6);
+  transition:transform .2s cubic-bezier(.3,1.6,.5,1);
+}
+.stk:hover{transform:scale(1.12) rotate(0deg) !important}
+.stk.c1{transform:rotate(-6deg)}
+.stk.c2{background:var(--lime);color:var(--ink);transform:rotate(5deg)}
+.stk.c3{transform:rotate(-3deg)}
+.hero .spark.a{right:4%;top:-6px;width:26px;height:26px}
+.hero .spark.b{left:38%;bottom:-10px;width:16px;height:16px;animation-delay:.8s}
+
+/* Pager countdown */
+.pager{
+  position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;
+  padding:8px;border-radius:18px;border:1px solid rgba(232,181,74,.55);
+  background:linear-gradient(160deg,#2b2016,#0f0b08 70%);
+  box-shadow:inset 0 1px 0 rgba(255,230,170,.25), 0 12px 24px -12px #000;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+.lcd{
+  border-radius:12px;padding:6px 12px 4px;text-align:left;font-family:var(--pixel);color:var(--lcd-ink);
+  background:linear-gradient(180deg,var(--lcd),var(--lcd-lo));
+  box-shadow:inset 0 3px 8px rgba(0,0,0,.35);
+}
+.lcd-top{color:var(--sun);display:flex;justify-content:space-between;gap:8px;font-size:clamp(.95rem,4.2vw,1.15rem);line-height:1}
+.lcd-big{display:flex;align-items:baseline;font-size:clamp(2.6rem,min(12.5vw,7vh),3.6rem);line-height:.92;letter-spacing:.03em;text-shadow:0 0 10px rgba(255,122,26,.75)}
+.lcd-big .colon{animation:blink 1s steps(1) infinite}
+.keys{display:grid;gap:7px;padding-right:4px}
+.keys span{width:14px;height:14px;border-radius:50%;border:1px solid rgba(242,199,102,.8);box-shadow:inset 0 -3px 0 rgba(0,0,0,.2)}
+.keys span:nth-child(1){background:var(--hot)}
+.keys span:nth-child(2){background:var(--lime)}
+.keys span:nth-child(3){background:var(--cyan)}
+
+/* Caution tape house rule */
+.tape-wrap{margin-inline:-16px}
+.tape{
+  transform:rotate(-2.4deg);overflow:hidden;white-space:nowrap;
+  background:linear-gradient(180deg,#e8b54a,#c8962f);color:var(--ink);border-block:3px double var(--ink);
+  box-shadow:0 8px 16px -8px rgba(0,0,0,.7);
+}
+.tape-run{display:inline-flex;animation:marquee 14s linear infinite}
+.tape-run span{padding:6px 0;font-family:var(--bubble);font-style:italic;font-weight:700;font-size:clamp(.95rem,4.3vw,1.15rem);line-height:1.1}
+
+/* Map card */
+.where{
+  position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center;text-align:left;text-decoration:none;color:var(--ink);
+  padding:7px 12px 7px 7px;border-radius:14px;background:var(--paper);border:1px solid var(--lime);transform:rotate(.8deg);
+  box-shadow:0 10px 20px -10px #000;transition:transform .2s cubic-bezier(.3,1.6,.5,1);
+}
+.where:hover{transform:rotate(0) scale(1.02)}
+.where::before{content:"";position:absolute;left:-10px;top:-8px;width:58px;height:18px;background:rgba(232,181,74,.75);transform:rotate(-24deg);box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.where::after{content:"";position:absolute;right:-8px;bottom:-6px;width:48px;height:16px;background:rgba(215,38,46,.7);transform:rotate(-18deg)}
+.map{display:block;width:clamp(80px,24vw,104px);height:auto;border-radius:8px}
+.route{animation:march .9s linear infinite}
+.ping{transform-origin:92px 20px;animation:ping 1.6s ease-out infinite}
+.addr{display:grid;gap:1px;font-size:.8125rem;line-height:1.3;min-width:0;color:var(--ink-soft)}
+.addr b{font-size:.9375rem;color:var(--ink)}
+.addr em{font-style:normal;font-weight:700;font-size:.75rem;color:var(--hot-deep);margin-top:2px}
+
+/* RSVP */
+.bottom{display:grid;gap:clamp(6px,1.1vh,10px)}
+.slot{display:grid;align-items:center}
+.slot:empty,.slot:not(:has(> :not([hidden]))){display:none}
+.idle{margin:0;font-size:.9375rem;color:var(--dim);text-wrap:balance}
+.chit{
+  background:var(--paper);color:var(--ink);text-align:left;border-radius:4px;border:0;
+  padding:8px 12px 9px;transform:rotate(-1deg);box-shadow:0 14px 28px -14px rgba(0,0,0,.8);
+  display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:start;
+}
+.chit .tag{grid-column:1 / -1;margin:0;font-size:.6875rem;font-weight:700;color:var(--ink-soft)}
+.chit .said{margin:0;font-size:.8125rem;color:var(--ink-soft);min-width:0;overflow-wrap:anywhere;text-decoration:line-through;text-decoration-color:var(--stamp)}
+.chit .verdict{grid-column:1 / -1;margin:0;font-size:.9375rem;font-weight:600;line-height:1.3;text-wrap:pretty}
+.stamp{font-family:var(--bubble);font-weight:800;font-size:.875rem;letter-spacing:.06em;text-transform:uppercase;line-height:1;color:var(--stamp);border:2px solid var(--stamp);border-radius:6px;padding:4px 7px 3px;transform:rotate(-8deg);white-space:nowrap}
+.stamp.slam{animation:slam .42s cubic-bezier(.3,1.6,.5,1)}
+.chit.in{animation:in .3s ease}
+.note{margin:0;font-size:.9375rem;color:var(--cream)}
+.note .num{font-weight:700;user-select:all;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+.yes{
+  position:relative;overflow:hidden;display:grid;place-content:center;min-height:clamp(48px,6.6vh,60px);padding:8px 14px;border-radius:999px;text-decoration:none;
+  background:linear-gradient(180deg,#fbe2a0 0%,#e8b54a 48%,#c88a2a 100%);color:var(--ink);border:1px solid #fff0c2;
+  box-shadow:0 5px 0 #7a5214, 0 16px 30px -10px rgba(255,150,40,.55), 0 0 calc(var(--pulse) * 26px) rgba(255,170,60,.6);
+  font-family:var(--ui);font-weight:700;font-size:1.0625rem;line-height:1.1;
+  transition:transform .12s, box-shadow .12s;
+}
+.yes::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.55) 48%,transparent 60%);background-size:260% 100%;animation:shine 3.6s ease-in-out infinite}
+.yes:active{transform:translateY(4px);box-shadow:0 1px 0 #7a5214, 0 8px 20px -10px rgba(255,150,40,.55)}
+.yes.bump{animation:bump .45s ease}
+
+.or{margin:2px 0 0;font-size:.8125rem;font-weight:600;color:var(--dim)}
+.or b{color:var(--lime);font-weight:700;font-variant-numeric:tabular-nums}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{
+  appearance:none;cursor:pointer;min-height:clamp(40px,5.4vh,50px);padding:6px 10px;border-radius:999px;
+  background:rgba(11,9,8,.55);color:var(--cream);border:1px solid rgba(232,181,74,.35);
+  font-size:.8125rem;font-weight:600;line-height:1.2;
+  transition:background .2s, border-color .2s, opacity .25s, transform .15s cubic-bezier(.3,1.6,.5,1);
+  min-width:0;overflow-wrap:anywhere;
+}
+.opt:hover{border-color:var(--lime);background:rgba(232,181,74,.12);transform:rotate(-1.5deg) scale(1.03)}
+.opt:active{transform:scale(.95)}
+.opt.struck{text-decoration:line-through;text-decoration-color:var(--stamp);text-decoration-thickness:2px;opacity:.4}
+.opt.dealt{animation:deal .35s cubic-bezier(.3,1.5,.5,1)}
+
+.minor{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 20px;font-size:.75rem;font-weight:600;color:var(--dim)}
+.minor a{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.minor a:hover{color:var(--cream)}
+.screen.shake{animation:shake .32s linear}
+
+@keyframes float{50%{transform:translateY(-10px) rotate(-1.5deg)}}
+@keyframes holo{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes shine{0%{background-position:150% 0}60%,100%{background-position:-60% 0}}
+@keyframes twinkle{0%,100%{transform:scale(.4) rotate(0);opacity:.3}50%{transform:scale(1) rotate(45deg);opacity:1}}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-6%,4%)}40%{transform:translate(5%,-7%)}60%{transform:translate(-3%,8%)}80%{transform:translate(7%,2%)}100%{transform:translate(0,0)}}
+@keyframes blink{50%{opacity:.15}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes march{to{stroke-dashoffset:-18}}
+@keyframes ping{0%{transform:scale(.4);opacity:1}100%{transform:scale(2.4);opacity:0}}
+@keyframes shake{0%,100%{translate:0 0}20%{translate:-7px 3px}40%{translate:6px -4px}60%{translate:-4px -3px}80%{translate:3px 4px}}
+@keyframes slam{0%{transform:rotate(-18deg) scale(1.9);opacity:0}100%{transform:rotate(-8deg) scale(1);opacity:1}}
+@keyframes in{from{opacity:0;transform:translateY(8px) rotate(-1deg)}to{opacity:1;transform:rotate(-1deg)}}
+@keyframes deal{from{opacity:0;transform:translateY(-14px) rotate(-4deg)}to{opacity:1;transform:none}}
+@keyframes bump{0%,100%{transform:none}40%{transform:scale(1.06)}}
+@media (max-height:700px){
+  .stickers .stk{font-size:.6875rem;padding:2px 8px}
+  .slot{min-height:54px}
+  .screen{padding-block:10px 8px}
+  .chit .tag{display:none}
+  .opt{min-height:36px}
+  .bottom{gap:5px}
+  .chit{padding:6px 10px 7px}
+  .chit .verdict{font-size:.875rem}
+}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="star" viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/></symbol></svg>
+<canvas id="lights" aria-hidden="true"></canvas>
+<div class="dots" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<audio id="song" loop preload="auto" playsinline></audio>
+
+<section class="cover" id="cover">
+  <button class="card" id="card" type="button" aria-label="Open the invitation">
+    <span class="card-front">
+      <span class="face face-front">
+        <span class="cf-top">You&rsquo;re invited to</span>
+        <span class="cf-name">Ishan&rsquo;s</span>
+        <span class="cf-33">33</span>
+        <span class="cf-name">birthday</span>
+        <svg class="spark" style="left:12%;top:10%"><use href="#star"/></svg>
+        <svg class="spark" style="right:10%;top:30%;width:30px;height:30px;animation-delay:.7s"><use href="#star"/></svg>
+        <svg class="spark" style="left:16%;bottom:14%;width:16px;height:16px;animation-delay:1.3s"><use href="#star"/></svg>
+      </span>
+    </span>
+  </button>
+  <p class="tapnote"><strong>Tap the card to open</strong><span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6h3l4-3v10L5 10H2z M11 5.5a3.5 3.5 0 0 1 0 5l-.8-.8a2.4 2.4 0 0 0 0-3.4z M12.6 3.9a5.8 5.8 0 0 1 0 8.2l-.8-.8a4.6 4.6 0 0 0 0-6.6z"/></svg>Sound on</span></p>
+</section>
+
+<main class="screen" id="screen" hidden>
+  <div class="hero">
+    <button class="deck fall" style="--d:0;--r:-30deg" id="deck" type="button" aria-label="Pause music">
+      <span class="glow"></span>
+      <span class="spinner" id="spinner"><span class="record"><span class="label"><span class="l-name">Ishan</span><span class="l-side">33&#8531; RPM</span></span></span></span>
+      <span class="sheen"></span>
+      <svg class="arm" viewBox="0 0 100 220" aria-hidden="true">
+        <circle cx="72" cy="20" r="17" fill="#2d2540"/>
+        <circle cx="72" cy="20" r="9" fill="#dfe4f2"/>
+        <path d="M72 20 L70 150 Q69 170 52 186" fill="none" stroke="#e8ecf6" stroke-width="6" stroke-linecap="round"/>
+        <rect x="34" y="180" width="26" height="16" rx="3" fill="#e8b54a" transform="rotate(-38 47 188)"/>
+      </svg>
+    </button>
+    <div class="who">
+      <h1 class="fall" style="--d:1;--r:8deg" aria-label="Ishan turns 33"><span class="n1 chrome">Ishan</span><span class="n2">turns 33</span></h1>
+      <div class="stickers">
+        <span class="fall" style="--d:2;--r:-25deg"><span class="stk c1">Cocktails</span></span>
+        <span class="fall" style="--d:3;--r:20deg"><span class="stk c2">DJ</span></span>
+        <span class="fall" style="--d:4;--r:-15deg"><span class="stk c3">Food</span></span>
+      </div>
+    </div>
+    <svg class="spark a"><use href="#star"/></svg>
+    <svg class="spark b"><use href="#star"/></svg>
+  </div>
+
+  <div class="fall" style="--d:5;--r:6deg">
+    <div class="pager" id="pager" role="timer">
+      <div class="lcd">
+        <div class="lcd-top"><span id="lcdLabel">DOORS OPEN IN</span><span>SAT 24 OCT 9PM</span></div>
+        <div class="lcd-big" aria-hidden="true"><span id="hh">00</span><span class="colon">:</span><span id="mm">00</span><span class="colon">:</span><span id="ss">00</span></div>
+      </div>
+      <div class="keys" aria-hidden="true"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+
+  <div class="tape-wrap fall" style="--d:6;--r:-4deg">
+    <div class="tape" role="note" aria-label="House rule: nobody leaves before 2 am">
+      <div class="tape-run" aria-hidden="true"><span>&nbsp;HOUSE RULE &#10022; NOBODY LEAVES BEFORE 2 AM &#10022; HOUSE RULE &#10022; NOBODY LEAVES BEFORE 2 AM &#10022;</span><span>&nbsp;HOUSE RULE &#10022; NOBODY LEAVES BEFORE 2 AM &#10022; HOUSE RULE &#10022; NOBODY LEAVES BEFORE 2 AM &#10022;</span></div>
+    </div>
+  </div>
+
+  <div class="fall" style="--d:7;--r:10deg">
+    <a class="where" href="https://www.google.com/maps/search/?api=1&amp;query=The+V+(privilege+living)+Luxury+Apartments%2C+Srija+Rd%2C+New+Town%2C+West+Bengal+700135" target="_blank" rel="noopener">
+      <svg class="map" viewBox="0 0 120 64" aria-hidden="true">
+        <rect width="120" height="64" fill="#f1e4c8"/>
+        <path d="M-5 18 L125 10 M-5 44 L125 38 M22 -5 L30 70 M60 -5 L66 70 M96 -5 L100 70 M-5 70 L50 -5" stroke="#dcc8a2" stroke-width="5" fill="none"/>
+        <path d="M-5 18 L125 10 M-5 44 L125 38 M22 -5 L30 70 M60 -5 L66 70 M96 -5 L100 70" stroke="#ffffff" stroke-width="1.2" fill="none"/>
+        <path class="route" d="M8 58 C 26 52, 30 34, 50 32 S 84 30, 92 20" stroke="#c4161c" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-dasharray="5 4"/>
+        <circle cx="8" cy="58" r="3" fill="#120d08"/>
+        <circle class="ping" cx="92" cy="20" r="6" fill="none" stroke="#c4161c" stroke-width="2"/>
+        <path d="M92 6 c-5 0-8 4-8 8 0 6 8 13 8 13 s8-7 8-13 c0-4-3-8-8-8z" fill="#c4161c"/>
+        <circle cx="92" cy="14" r="3" fill="#fff"/>
+      </svg>
+      <span class="addr"><b>Flat 4C1, 4th floor</b><span>The V (Privilege Living), Srija Rd, New Town</span><em>Open in Maps &#8599;</em></span>
+    </a>
+  </div>
+
+  <div class="bottom">
+    <div class="slot fall" style="--d:8;--r:-6deg" id="slot" aria-live="polite">
+      <div class="chit" id="chit" hidden>
+        <p class="tag">Request to the DJ</p>
+        <p class="said" id="said"></p>
+        <span class="stamp" id="stamp">Rejected</span>
+        <p class="verdict" id="verdict"></p>
+      </div>
+      <p class="note" id="note" hidden>WhatsApp should open with your RSVP. If not, message <span class="num">+91 70032 68862</span></p>
+    </div>
+    <div class="fall" style="--d:9;--r:4deg"><a class="yes" id="yes" href="https://wa.me/917003268862" target="_blank" rel="noopener">Obviously coming</a></div>
+    <div class="fall" style="--d:10;--r:-5deg">
+      <p class="or">Or pick your excuse <b id="count" hidden></b></p>
+      <div class="options" id="options"></div>
+    </div>
+    <div class="minor fall" style="--d:11;--r:3deg">
+      <a id="cal" href="#" target="_blank" rel="noopener">Add to calendar</a>
+      <a id="regrets" href="#" target="_blank" rel="noopener" hidden>Genuinely can&rsquo;t come?</a>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var reduce = false;
+  try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch(e){}
+
+  /* ---------- Pager countdown (party: 24 Oct 2026, 9 pm to 2 am IST) ---------- */
+  var START = Date.UTC(2026,9,24,15,30), END = Date.UTC(2026,9,24,20,30);
+  function pad(x){ return (x < 10 ? "0" : "") + x; }
+  function tick(){
+    var now = Date.now(), label, left;
+    if (now < START){ label = "DOORS OPEN IN"; left = START - now; }
+    else if (now < END){ label = "NOBODY LEAVES FOR"; left = END - now; }
+    else { label = "THANKS FOR COMING"; left = 0; }
+    var s = Math.max(0, Math.floor(left / 1000)), h = Math.min(99, Math.floor(s / 3600)), m = Math.floor(s % 3600 / 60);
+    $("lcdLabel").textContent = label;
+    $("hh").textContent = pad(h); $("mm").textContent = pad(m); $("ss").textContent = pad(s % 60);
+    $("pager").setAttribute("aria-label", (label.charAt(0) + label.slice(1).toLowerCase()) + " " + h + " hours " + m + " minutes");
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ---------- Music: house remix of Happy Birthday, rendered once to a looping WAV ---------- */
+  // Played through an <audio> element so it also sounds on iPhones with the silent switch on.
+  // 16 bars: 0-7 drop with the melody, 8-11 groove, 12-15 build with snare roll and riser.
+  var BPM = 124, S16 = 60 / BPM / 4, BEAT = 60 / BPM, BAR = BEAT * 4, T0 = .03, RATE = 24000;
+  var ac, drums, pump, music, delayIn, noise;
+  function mtof(n){ return 440 * Math.pow(2, (n - 69) / 12); }
+  var CH = [[53,57,60],[52,55,60],[52,55,60],[53,57,60],[53,57,60],[53,58,62],[52,55,60],[53,57,60]];
+  var BASS = [41,36,36,41,41,34,36,41];
+  var MEL = [
+    [[0,3,72],[3,1,72],[4,4,74],[8,4,72],[12,4,77]], [[0,8,76]],
+    [[0,3,72],[3,1,72],[4,4,74],[8,4,72],[12,4,79]], [[0,8,77]],
+    [[0,3,72],[3,1,72],[4,4,84],[8,4,81],[12,4,77]], [[0,4,76],[4,8,74]],
+    [[0,3,82],[3,1,82],[4,4,81],[8,4,77],[12,4,79]], [[0,8,77]]
+  ];
+  function env(g, t, a, peak, dec){
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(peak, t + a);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dec);
+    return t + dec + .02;
+  }
+  function kick(t){
+    var o = ac.createOscillator(), g = ac.createGain();
+    o.frequency.setValueAtTime(170, t); o.frequency.exponentialRampToValueAtTime(44, t + .12);
+    o.connect(g); g.connect(drums); o.start(t); o.stop(env(g, t, .003, 1.2, .42));
+    hiss(t, "highpass", 2500, .7, .35, .02);
+    pump.gain.setValueAtTime(.25, t); pump.gain.linearRampToValueAtTime(1, t + BEAT * .75);
+  }
+  function hiss(t, type, f, q, peak, dec){
+    var s = ac.createBufferSource(), fl = ac.createBiquadFilter(), g = ac.createGain();
+    s.buffer = noise; s.loopStart = 0; fl.type = type; fl.frequency.value = f; fl.Q.value = q;
+    s.connect(fl); fl.connect(g); g.connect(drums); s.start(t, Math.random() * .5); s.stop(env(g, t, .002, peak, dec));
+  }
+  function clap(t, peak){
+    hiss(t, "bandpass", 1300, 1.2, peak * .6, .02);
+    hiss(t + .012, "bandpass", 1300, 1.2, peak * .6, .02);
+    hiss(t + .024, "bandpass", 1200, .9, peak, .2);
+  }
+  function voice(t, n, len, type, peak, cutoff, detune, dest, toDelay){
+    var o = ac.createOscillator(), fl = ac.createBiquadFilter(), g = ac.createGain();
+    o.type = type; o.frequency.value = mtof(n); o.detune.value = detune || 0;
+    fl.type = "lowpass"; fl.frequency.setValueAtTime(cutoff, t); fl.frequency.exponentialRampToValueAtTime(Math.max(200, cutoff * .35), t + len + .1);
+    o.connect(fl); fl.connect(g); g.connect(dest || pump); if (toDelay) g.connect(delayIn);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(peak, t + .008);
+    g.gain.setValueAtTime(peak, t + Math.max(.02, len - .04));
+    g.gain.exponentialRampToValueAtTime(0.0001, t + len + .1);
+    o.start(t); o.stop(t + len + .15);
+  }
+  function saw2(t, n, len, peak, cutoff, toDelay){
+    voice(t, n, len, "sawtooth", peak * 1.4, cutoff, -12, null, toDelay);
+    voice(t, n, len, "sawtooth", peak * 1.4, cutoff, 12, null, toDelay);
+  }
+  function saw3(t, n, len, peak, cutoff, toDelay){
+    voice(t, n, len, "sawtooth", peak, cutoff, -14, null, toDelay);
+    voice(t, n, len, "sawtooth", peak, cutoff, 0, null, toDelay);
+    voice(t, n, len, "sawtooth", peak, cutoff, 14, null, toDelay);
+  }
+  function playStep(s, t){
+    var bar = Math.floor(s / 16), pos = s % 16, c = bar % 8;
+    var drop = bar < 8, groove = bar >= 8 && bar < 12, build = bar >= 12;
+    if (pos === 0 && (bar === 0 || bar === 8)) hiss(t, "highpass", 5000, .5, .45, 1.8);
+    if (pos % 4 === 0 && bar !== 15) kick(t);
+    if (pos % 4 === 2) hiss(t, "highpass", 7000, .6, .32, .1);
+    if (!build && pos % 2 === 1) hiss(t, "highpass", 10000, .7, .09, .03);
+    if (!build && (pos === 4 || pos === 12)) clap(t, .8);
+    if (build){
+      var every = bar === 12 || bar === 13 ? 4 : bar === 14 ? 2 : 1;
+      if (pos % every === 0) clap(t, .25 + (s - 192) / 64 * .6);
+    }
+    if (pos % 4 === 2 || (drop && pos === 15)){
+      voice(t, BASS[c], S16 * 1.7, "sawtooth", .34, build ? 300 + (s - 192) * 30 : 900);
+      voice(t, BASS[c] - 12, S16 * 1.7, "sine", .55, 400);
+    }
+    if (pos === 0) CH[c].forEach(function(n){ saw2(t, n, BAR * .96, .022, build ? 500 + (s - 192) * 50 : 1500); });
+    if (!build && (pos === 6 || pos === 14 || (drop && pos === 10))) CH[c].forEach(function(n){ saw2(t, n + 12, S16 * .9, .02, 3600, true); });
+    if (drop){
+      MEL[bar].forEach(function(m){
+        if (m[0] === pos){
+          var len = S16 * m[1] * .92;
+          saw3(t, m[2], len, .045, 4800, true);
+          voice(t, m[2] - 12, len, "square", .05, 2400, 0, null, false);
+        }
+      });
+    }
+  }
+  function wav(data, rate){
+    var n = data.length, buf = new ArrayBuffer(44 + n * 2), v = new DataView(buf);
+    function str(o, s){ for (var i=0;i<s.length;i++) v.setUint8(o + i, s.charCodeAt(i)); }
+    str(0,"RIFF"); v.setUint32(4, 36 + n * 2, true); str(8,"WAVE"); str(12,"fmt ");
+    v.setUint32(16,16,true); v.setUint16(20,1,true); v.setUint16(22,1,true); v.setUint32(24,rate,true);
+    v.setUint32(28,rate * 2,true); v.setUint16(32,2,true); v.setUint16(34,16,true); str(36,"data"); v.setUint32(40,n * 2,true);
+    for (var i=0;i<n;i++){ var x = Math.max(-1, Math.min(1, data[i])); v.setInt16(44 + i * 2, x < 0 ? x * 32768 : x * 32767, true); }
+    return URL.createObjectURL(new Blob([buf], {type:"audio/wav"}));
+  }
+  function renderSong(){
+    var OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+    ac = new OAC(1, Math.ceil(RATE * (256 * S16)), RATE);
+    var master = ac.createGain(); master.gain.value = .7;
+    var comp = ac.createDynamicsCompressor(); comp.threshold.value = -18; comp.ratio.value = 6; comp.attack.value = .003; comp.release.value = .12;
+    master.connect(comp); comp.connect(ac.destination);
+    drums = ac.createGain(); drums.connect(master);
+    pump = ac.createGain(); music = ac.createGain(); music.gain.value = 1.1; pump.connect(music); music.connect(master);
+    var dl = ac.createDelay(1), fb = ac.createGain(), wet = ac.createGain(), lp = ac.createBiquadFilter();
+    dl.delayTime.value = S16 * 3; fb.gain.value = .3; wet.gain.value = .25; lp.type = "lowpass"; lp.frequency.value = 2400;
+    dl.connect(lp); lp.connect(fb); fb.connect(dl); lp.connect(wet); wet.connect(music);
+    delayIn = dl;
+    noise = ac.createBuffer(1, RATE * 2, RATE);
+    var d = noise.getChannelData(0); for (var i=0;i<d.length;i++) d[i] = Math.random()*2-1;
+    // riser over the build
+    var rs = ac.createBufferSource(), rf = ac.createBiquadFilter(), rg = ac.createGain(), rt = T0 + 192 * S16, re = T0 + 256 * S16;
+    rs.buffer = noise; rs.loop = true; rf.type = "bandpass"; rf.Q.value = 2;
+    rf.frequency.setValueAtTime(300, rt); rf.frequency.exponentialRampToValueAtTime(7000, re);
+    rg.gain.setValueAtTime(0.0001, rt); rg.gain.exponentialRampToValueAtTime(.35, re - .05); rg.gain.linearRampToValueAtTime(0, re);
+    rs.connect(rf); rf.connect(rg); rg.connect(master); rs.start(rt); rs.stop(re);
+    for (var s=0;s<256;s++) playStep(s, T0 + s * S16);
+    return new Promise(function(res, rej){
+      ac.oncomplete = function(e){ res(e.renderedBuffer); };
+      var p = ac.startRendering(); if (p && p.catch) p.catch(rej);
+    });
+  }
+  function master(data){
+    // normalise, then soft-clip for loudness
+    var peak = 0, k = 1.7, nk = Math.tanh(k), i;
+    for (i=0;i<data.length;i++){ var a = Math.abs(data[i]); if (a > peak) peak = a; }
+    peak = peak || 1;
+    for (i=0;i<data.length;i++) data[i] = Math.tanh(k * data[i] / peak) / nk * .97;
+    return data;
+  }
+
+  var song = $("song"), ready = false, wanted = true, unlocked = false, unlockAt = 0, opened = false;
+  var SILENT = wav(new Float32Array(800), 8000);
+  function setOn(on){
+    $("screen").classList.toggle("on", on);
+    $("deck").setAttribute("aria-label", on ? "Pause music" : "Play music");
+  }
+  song.addEventListener("playing", function(){ if (ready) setOn(true); });
+  song.addEventListener("pause", function(){ setOn(false); });
+  function tryPlay(){
+    if (!wanted) return;
+    var p = song.play();
+    if (p && p.catch) p.catch(function(){});
+  }
+  function gesture(){
+    if (unlocked) return;
+    unlocked = true; unlockAt = Date.now();
+    ["pointerdown","touchend","keydown","click"].forEach(function(t){ document.removeEventListener(t, gesture, true); });
+    if (!ready){ song.src = SILENT; song.loop = false; var p = song.play(); if (p && p.catch) p.catch(function(){}); }
+    else { song.currentTime = 0; tryPlay(); }
+  }
+  ["pointerdown","touchend","keydown","click"].forEach(function(t){ document.addEventListener(t, gesture, true); });
+  renderSong().then(function(b){
+    song.src = wav(master(b.getChannelData(0)), RATE); song.loop = true; ready = true;
+    if (unlocked) tryPlay();
+  }).catch(function(){ $("deck").setAttribute("aria-label", "Music unavailable"); });
+
+  function toggle(){
+    if (!ready || !unlocked || Date.now() - unlockAt < 500) return;
+    if (song.paused){ wanted = true; tryPlay(); } else { wanted = false; song.pause(); }
+  }
+  $("deck").addEventListener("click", function(e){ if (e.detail === 0) toggle(); });
+  try { song.preservesPitch = false; song.mozPreservesPitch = false; song.webkitPreservesPitch = false; } catch(e){}
+
+  /* ---------- Record: spins at 33 1/3 rpm, drag to scratch ---------- */
+  var spinner = $("spinner"), angle = 0, vel = 0, dragging = false, lastA = 0, lastT = 0, moved = 0, hinted = false;
+  function ang(e){ var r = $("deck").getBoundingClientRect(); return Math.atan2(e.clientY - r.top - r.height/2, e.clientX - r.left - r.width/2) * 180 / Math.PI; }
+  $("deck").addEventListener("pointerdown", function(e){
+    dragging = true; moved = 0; lastA = ang(e); lastT = performance.now();
+    try { $("deck").setPointerCapture(e.pointerId); } catch(err){}
+  });
+  function release(){
+    if (!dragging) return;
+    dragging = false;
+    if (moved < 6) toggle();
+  }
+  $("deck").addEventListener("pointerup", release);
+  $("deck").addEventListener("pointercancel", release);
+  function tapeStop(){
+    vel = -420;
+  }
+  document.addEventListener("visibilitychange", function(){ if (document.hidden && !song.paused){ song.pause(); } else if (!document.hidden && wanted && ready && unlocked) tryPlay(); });
+
+  /* ---------- Opening the envelope ---------- */
+  function reveal(){
+    $("screen").hidden = false;
+    if (!reduce) $("screen").classList.add("drop");
+    setTimeout(function(){ $("cover").hidden = true; }, 650);
+    setTimeout(function(){
+      var r = $("deck").getBoundingClientRect(); burst(r.left + r.width/2, r.top + r.height/2, 90);
+      burst(innerWidth * .12, innerHeight * .95, 40); burst(innerWidth * .88, innerHeight * .95, 40);
+    }, reduce ? 0 : 1100);
+  }
+  function openInvite(){
+    if (opened) return;
+    opened = true;
+    if (reduce){ $("cover").hidden = true; reveal(); return; }
+    $("cover").classList.add("gone"); reveal();
+  }
+  $("card").addEventListener("click", openInvite);
+
+  /* ---------- Stage lights: beams and bokeh, driven by the beat ---------- */
+  var lc = $("lights"), lx = lc.getContext("2d"), LW = 0, LH = 0, root = document.documentElement;
+  var BEAMS = [
+    {x:.06, c:"215,38,46", sp:.42, ph:0, w:.07},
+    {x:.34, c:"255,122,26", sp:.31, ph:2.1, w:.055},
+    {x:.66, c:"232,181,74", sp:.37, ph:4.2, w:.06},
+    {x:.94, c:"255,214,150", sp:.27, ph:1.3, w:.07}
+  ];
+  var DOTS = [], DC = ["215,38,46","255,122,26","232,181,74","255,240,200"];
+  for (var di=0; di<26; di++) DOTS.push({x:Math.random(), y:Math.random(), r:6 + Math.random() * 22, v:.00008 + Math.random() * .00025, ph:Math.random() * 6.28, c:DC[di % DC.length]});
+  function lsize(){ LW = lc.width = Math.ceil(innerWidth / 1.5); LH = lc.height = Math.ceil(innerHeight / 1.5); }
+  lsize(); addEventListener("resize", lsize);
+  function beatState(){
+    if (!ready || song.paused) return {p:0, e:0};
+    var t = song.currentTime - T0, bar = Math.floor(t / BAR) % 16;
+    var ph = ((t % BEAT) + BEAT) % BEAT;
+    var p = bar === 15 ? Math.exp(-((t % (S16 * 2)) + S16 * 2) % (S16 * 2) * 14) * .6 : Math.exp(-ph * 6);
+    var e = bar < 8 ? 1 : bar < 12 ? .75 : .45 + (t / BAR % 16 - 12) / 4 * .55;
+    return {p:p, e:e};
+  }
+  function drawLights(time){
+    var t = time / 1000, st = beatState(), I = .5 + st.e * .35 + st.p * .45;
+    lx.globalCompositeOperation = "source-over";
+    lx.clearRect(0, 0, LW, LH);
+    lx.globalCompositeOperation = "lighter";
+    var L = Math.hypot(LW, LH) * 1.1;
+    BEAMS.forEach(function(b, i){
+      var speed = b.sp * (1 + st.e * .8);
+      var a = Math.PI / 2 + Math.sin(t * speed + b.ph) * .62, ox = b.x * LW, oy = -LH * .04;
+      var g = lx.createRadialGradient(ox, oy, 0, ox, oy, L);
+      g.addColorStop(0, "rgba(" + b.c + "," + (.42 * I) + ")");
+      g.addColorStop(.55, "rgba(" + b.c + "," + (.12 * I) + ")");
+      g.addColorStop(1, "rgba(" + b.c + ",0)");
+      lx.fillStyle = g;
+      lx.beginPath(); lx.moveTo(ox, oy);
+      lx.lineTo(ox + Math.cos(a - b.w) * L, oy + Math.sin(a - b.w) * L);
+      lx.lineTo(ox + Math.cos(a + b.w) * L, oy + Math.sin(a + b.w) * L);
+      lx.closePath(); lx.fill();
+      lx.beginPath(); lx.moveTo(ox, oy);
+      lx.lineTo(ox + Math.cos(a - b.w * .25) * L, oy + Math.sin(a - b.w * .25) * L);
+      lx.lineTo(ox + Math.cos(a + b.w * .25) * L, oy + Math.sin(a + b.w * .25) * L);
+      lx.closePath(); lx.fill();
+    });
+    DOTS.forEach(function(d){
+      d.y -= d.v * (1 + st.e); if (d.y < -.1){ d.y = 1.1; d.x = Math.random(); }
+      var x = d.x * LW + Math.sin(t * .5 + d.ph) * 12, y = d.y * LH, al = (.1 + .1 * Math.sin(t * 1.4 + d.ph)) * (.8 + st.p * .9);
+      var g = lx.createRadialGradient(x, y, 0, x, y, d.r);
+      g.addColorStop(0, "rgba(" + d.c + "," + al + ")"); g.addColorStop(1, "rgba(" + d.c + ",0)");
+      lx.fillStyle = g; lx.beginPath(); lx.arc(x, y, d.r, 0, 6.283); lx.fill();
+    });
+    if (st.e === 1 && st.p > .5){ lx.fillStyle = "rgba(255,220,170," + ((st.p - .5) * .1) + ")"; lx.fillRect(0, 0, LW, LH); }
+    root.style.setProperty("--pulse", st.p.toFixed(3));
+  }
+  var lastFrame = 0;
+  (function frame(time){
+    var dt = Math.min(.05, ((time || 0) - lastFrame) / 1000); lastFrame = time || 0;
+    if (!dragging){
+      var target = ready && !song.paused ? 200 : 0;
+      vel += (target - vel) * Math.min(1, dt * 2.5);
+      angle += vel * dt;
+    }
+    spinner.style.transform = "rotate(" + angle.toFixed(2) + "deg)";
+    drawLights(reduce ? 0 : time || 0);
+    if (!reduce) requestAnimationFrame(frame);
+  })(0);
+
+  /* ---------- Petals ---------- */
+  var cv = $("fx"), cx = cv.getContext("2d"), parts = [], running = false;
+  var COLS = ["#e8b54a","#f2c766","#ff7a1a","#d7262e","#fff1c4","#b8862f"];
+  function size(){ var r = window.devicePixelRatio || 1; cv.width = innerWidth * r; cv.height = innerHeight * r; cx.setTransform(r,0,0,r,0,0); }
+  size(); addEventListener("resize", size);
+  function burst(x, y, n){
+    if (reduce) return;
+    for (var i=0;i<n;i++){
+      var a = -Math.PI/2 + (Math.random()-.5) * 2.2, v = 5 + Math.random() * 9;
+      parts.push({x:x, y:y, vx:Math.cos(a)*v, vy:Math.sin(a)*v, r:Math.random()*6.28, vr:(Math.random()-.5)*.3, w:5+Math.random()*6, h:3+Math.random()*4, c:COLS[i % COLS.length], life:1});
+    }
+    if (!running){ running = true; requestAnimationFrame(draw); }
+  }
+  function draw(){
+    cx.clearRect(0,0,innerWidth,innerHeight);
+    parts = parts.filter(function(p){ return p.life > 0 && p.y < innerHeight + 30; });
+    parts.forEach(function(p){
+      p.vy += .22; p.vx *= .985; p.vy *= .985; p.x += p.vx + Math.sin(p.r) * .6; p.y += p.vy; p.r += p.vr; p.life -= .006;
+      cx.save(); cx.translate(p.x, p.y); cx.rotate(p.r); cx.scale(1, Math.cos(p.r * 2));
+      cx.globalAlpha = Math.max(0, Math.min(1, p.life * 2)); cx.fillStyle = p.c;
+      cx.beginPath(); cx.ellipse(0, 0, p.w, p.h, 0, 0, 6.283); cx.fill(); cx.restore();
+    });
+    if (parts.length) requestAnimationFrame(draw); else { running = false; cx.clearRect(0,0,innerWidth,innerHeight); }
+  }
+
+  /* ---------- RSVP and excuses ---------- */
+  var PHONE = "917003268862";
+  var E = [
+    ["I have work.","On a Saturday night? It can wait till Monday."],
+    ["I\u2019m tired.","Nap now. Party\u2019s at 9."],
+    ["I have another plan.","Come after. We\u2019re on till 2 am."],
+    ["New Town is too far.","Book the cab now. Worth the ride, promise."],
+    ["Early start on Sunday.","Sleep in on Monday instead. Just this once."],
+    ["Can I leave at midnight?","House rule says 2 am. Let\u2019s talk at 1:59."],
+    ["I won\u2019t know anyone.","You know me. By 11 you\u2019ll know everyone."],
+    ["I have a deadline.","Submit it by 8. Party\u2019s at 9."],
+    ["Not drinking these days.","Then you\u2019ll remember the whole night. There\u2019s food and a DJ."],
+    ["I don\u2019t dance.","Nobody dances at 9. Everybody dances at 1."],
+    ["Traffic.","Leave a little early. Traffic lasts an hour, the party lasts five."],
+    ["I have a wedding.","Weddings end. Come straight here, already dressed."],
+    ["Family function.","Show your face there, then come here. We\u2019re on till 2."],
+    ["I\u2019m not feeling great.","Rest up. If you feel better by 9, come."],
+    ["Have to feed my pet.","Feed them at 8. Party\u2019s at 9."],
+    ["I have to study.","Study till 8. Reward yourself at 9."],
+    ["I\u2019ll let you know.","Let me know now. It\u2019s tonight."],
+    ["No one to come with.","Come alone. You\u2019ll leave with friends."]
+  ];
+  var STAMPS = ["Rejected","Denied","Overruled","Dismissed","Not today","Nice try"];
+  var YES = [[10,"I surrender. I’m coming"],[6,"Okay, okay. I’m coming"],[3,"Fine. I’m coming"],[0,"Obviously coming"]];
+  var SHOWN = 4;
+
+  function wa(t){ return "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(t); }
+  function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;} return a; }
+
+  var deck = shuffle(E), at = 0, n = 0, last = "", visible = [];
+  try { n = parseInt(localStorage.getItem("ishan33-n")||"0",10)||0; last = localStorage.getItem("ishan33-last")||""; } catch(e){}
+
+  function drawCard(){
+    for (var tries = 0; tries < E.length * 2; tries++){
+      if (at >= deck.length){ deck = shuffle(E); at = 0; }
+      var x = deck[at++];
+      if (visible.indexOf(x) === -1) return x;
+    }
+    return deck[0];
+  }
+  function yesText(){
+    return "Confirming my extremely exclusive attendance at Ishan / 33.\n\nI will not leave before 2 am. Excuses attempted: " + n + ".";
+  }
+  function render(bump){
+    var label = "Obviously coming";
+    for (var i=0;i<YES.length;i++){ if (n >= YES[i][0]){ label = YES[i][1]; break; } }
+    var yes = $("yes");
+    if (yes.textContent !== label){ yes.textContent = label; if (bump){ yes.classList.remove("bump"); void yes.offsetWidth; yes.classList.add("bump"); } }
+    yes.href = wa(yesText());
+    $("count").hidden = !n;
+    $("count").textContent = "(" + n + " rejected)";
+    $("regrets").hidden = n < 3;
+  }
+  function reject(x){
+    n += 1; last = x[0];
+    try { localStorage.setItem("ishan33-n", String(n)); localStorage.setItem("ishan33-last", last); } catch(e){}
+    $("note").hidden = true;
+    var chit = $("chit"), st = $("stamp");
+    $("said").textContent = "“" + x[0] + "”";
+    $("verdict").textContent = x[1];
+    st.textContent = STAMPS[Math.floor(Math.random()*STAMPS.length)];
+    chit.hidden = false;
+    chit.classList.remove("in"); st.classList.remove("slam"); void chit.offsetWidth;
+    chit.classList.add("in"); st.classList.add("slam");
+    if (!reduce){ var sc = $("screen"); sc.classList.remove("shake"); void sc.offsetWidth; sc.classList.add("shake"); }
+    tapeStop();
+    render(true);
+  }
+  function makeOpt(x){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "opt"; b.textContent = x[0];
+    visible.push(x);
+    b.addEventListener("click", function(){
+      if (b.disabled) return;
+      b.disabled = true; b.classList.add("struck");
+      reject(x);
+      setTimeout(function(){
+        visible.splice(visible.indexOf(x), 1);
+        var fresh = makeOpt(drawCard());
+        fresh.classList.add("dealt");
+        $("options").replaceChild(fresh, b);
+      }, 380);
+    });
+    return b;
+  }
+  for (var i=0;i<SHOWN;i++) $("options").appendChild(makeOpt(drawCard()));
+
+  $("yes").addEventListener("click", function(){
+    $("yes").href = wa(yesText());
+    var r = $("yes").getBoundingClientRect(); burst(r.left + r.width/2, r.top, 140);
+    setTimeout(function(){ $("chit").hidden = true; $("note").hidden = false; }, 400);
+  });
+
+  $("regrets").href = wa("Ishan, I genuinely can’t make it to your 33rd on Saturday. Happy birthday!");
+
+  $("cal").href = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+    + "&text=" + encodeURIComponent("Ishan / 33")
+    + "&dates=20261024T153000Z/20261024T203000Z"
+    + "&details=" + encodeURIComponent("Cocktails, DJ, food. Nobody leaves before 2 am.\nFlat 4C1, 4th floor.\nhttps://www.google.com/maps/search/?api=1&query=The+V+(privilege+living)+Luxury+Apartments%2C+Srija+Rd%2C+New+Town%2C+West+Bengal+700135")
+    + "&location=" + encodeURIComponent("Flat 4C1, 4th floor, The V (Privilege Living) Luxury Apartments, Srija Rd, New Town, West Bengal 700135");
+
+  render(false);
+})();
+</script>
+</body>
+</html>
